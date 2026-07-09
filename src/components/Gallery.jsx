@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const images = [
   "gallery-1.jpg",
@@ -9,11 +10,10 @@ const images = [
   "gallery-4.jpg",
   "gallery-5.jpg",
   "gallery-6.jpg",
-  "gallery-7.jpg",
-  "gallery-8.jpg",
 ];
 
 export default function Gallery() {
+  const { t } = useLanguage();
   const [activeImage, setActiveImage] = useState(null);
 
   return (
@@ -21,22 +21,22 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center" data-aos="fade-up">
           <p className="text-yellow-400 uppercase tracking-[0.35em] text-xs md:text-sm">
-            Galeri
+            {t.gallery.eyebrow}
           </p>
 
           <h2 className="mt-5 text-4xl md:text-6xl font-black">
-            VIP Araç Galerisi
+            {t.gallery.title}
           </h2>
 
           <p className="mt-5 max-w-2xl mx-auto text-white/55">
-            Aracımızın iç ve dış tasarım detaylarını yakından inceleyin.
+            {t.gallery.text}
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-5">
           {images.map((img, i) => (
             <button
-              key={i}
+              key={img}
               onClick={() => setActiveImage(img)}
               data-aos="fade-up"
               data-aos-delay={i * 100}
@@ -53,10 +53,10 @@ export default function Gallery() {
 
               <div className="absolute bottom-5 left-5 right-5 text-left">
                 <p className="text-yellow-400 font-black">
-                  YILDIZ VIP LUXURY
+                  {t.gallery.cardTitle}
                 </p>
                 <p className="mt-1 text-sm text-white/60">
-                  Premium VIP Transfer Deneyimi
+                  {t.gallery.cardText}
                 </p>
               </div>
             </button>
@@ -65,24 +65,24 @@ export default function Gallery() {
       </div>
 
       {activeImage && (
-  <div
-    onClick={() => setActiveImage(null)}
-    className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
-  >
-    <button
-      onClick={() => setActiveImage(null)}
-      className="absolute top-6 right-6 text-white text-4xl z-10"
-    >
-      ×
-    </button>
+        <div
+          onClick={() => setActiveImage(null)}
+          className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
+        >
+          <button
+            onClick={() => setActiveImage(null)}
+            className="absolute top-6 right-6 text-white text-4xl z-10"
+          >
+            ×
+          </button>
 
-    <img
-      src={`/${activeImage}`}
-      alt="YILDIZ VIP LUXURY"
-      className="max-w-full max-h-[85vh] object-contain rounded-2xl border border-yellow-500/30"
-    />
-  </div>
-)}
+          <img
+            src={`/${activeImage}`}
+            alt="YILDIZ VIP LUXURY"
+            className="max-w-full max-h-[85vh] object-contain rounded-2xl border border-yellow-500/30"
+          />
+        </div>
+      )}
     </section>
   );
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Reservation() {
+  const { t } = useLanguage();
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -19,16 +22,16 @@ export default function Reservation() {
   };
 
   const message = encodeURIComponent(
-    `Merhaba, YILDIZ VIP LUXURY için teklif almak istiyorum.
+    `${t.reservation.whatsappMessage}
 
-Ad Soyad: ${form.name}
-Telefon: ${form.phone}
-Alış Noktası: ${form.from}
-Varış Noktası: ${form.to}
-Tarih: ${form.date}
-Saat: ${form.time}
-Yolcu Sayısı: ${form.passengers}
-Not: ${form.note}`
+${t.reservation.labels.name}: ${form.name}
+${t.reservation.labels.phone}: ${form.phone}
+${t.reservation.labels.from}: ${form.from}
+${t.reservation.labels.to}: ${form.to}
+${t.reservation.labels.date}: ${form.date}
+${t.reservation.labels.time}: ${form.time}
+${t.reservation.labels.passengers}: ${form.passengers}
+${t.reservation.labels.note}: ${form.note}`
   );
 
   return (
@@ -36,21 +39,22 @@ Not: ${form.note}`
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
         <div data-aos="fade-right">
           <p className="text-yellow-400 uppercase tracking-[0.35em] text-xs">
-            Rezervasyon
+            {t.reservation.eyebrow}
           </p>
 
           <h2 className="mt-5 text-4xl md:text-6xl font-black leading-tight">
-            Dakikalar İçinde
-            <span className="block text-yellow-400">Teklif Alın</span>
+            {t.reservation.title1}
+            <span className="block text-yellow-400">
+              {t.reservation.title2}
+            </span>
           </h2>
 
           <p className="mt-7 text-white/60 text-lg leading-8">
-            Transfer detaylarınızı girin. Bilgileriniz WhatsApp mesajına otomatik
-            aktarılır, hızlıca fiyat teklifi alabilirsiniz.
+            {t.reservation.text}
           </p>
 
           <div className="mt-10 grid grid-cols-3 gap-4">
-            {["Hızlı", "Güvenli", "7/24"].map((item) => (
+            {t.reservation.badges.map((item) => (
               <div
                 key={item}
                 className="rounded-2xl border border-yellow-500/20 bg-zinc-950 p-5 text-center text-yellow-400 font-black"
@@ -66,18 +70,59 @@ Not: ${form.note}`
           className="rounded-[2.5rem] border border-yellow-500/20 bg-zinc-950 p-6 md:p-9"
         >
           <div className="grid md:grid-cols-2 gap-4">
-            <input name="name" onChange={update} placeholder="Ad Soyad" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400" />
-            <input name="phone" onChange={update} placeholder="Telefon" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400" />
-            <input name="from" onChange={update} placeholder="Alış Noktası" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400" />
-            <input name="to" onChange={update} placeholder="Varış Noktası" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400" />
-            <input name="date" onChange={update} type="date" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400 text-white/60" />
-            <input name="time" onChange={update} type="time" className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400 text-white/60" />
-            <input name="passengers" onChange={update} placeholder="Yolcu Sayısı" className="md:col-span-2 bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400" />
+            <input
+              name="name"
+              onChange={update}
+              placeholder={t.reservation.placeholders.name}
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
+            />
+
+            <input
+              name="phone"
+              onChange={update}
+              placeholder={t.reservation.placeholders.phone}
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
+            />
+
+            <input
+              name="from"
+              onChange={update}
+              placeholder={t.reservation.placeholders.from}
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
+            />
+
+            <input
+              name="to"
+              onChange={update}
+              placeholder={t.reservation.placeholders.to}
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
+            />
+
+            <input
+              name="date"
+              onChange={update}
+              type="date"
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400 text-white/60"
+            />
+
+            <input
+              name="time"
+              onChange={update}
+              type="time"
+              className="bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400 text-white/60"
+            />
+
+            <input
+              name="passengers"
+              onChange={update}
+              placeholder={t.reservation.placeholders.passengers}
+              className="md:col-span-2 bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
+            />
 
             <textarea
               name="note"
               onChange={update}
-              placeholder="Ek notunuz"
+              placeholder={t.reservation.placeholders.note}
               rows="5"
               className="md:col-span-2 bg-black border border-yellow-500/20 rounded-2xl p-5 outline-none focus:border-yellow-400"
             />
@@ -87,7 +132,7 @@ Not: ${form.note}`
               target="_blank"
               className="md:col-span-2 rounded-full bg-yellow-400 py-5 text-center font-black text-black hover:bg-yellow-300 transition"
             >
-              WhatsApp’tan Teklif İste
+              {t.reservation.button}
             </a>
           </div>
         </div>

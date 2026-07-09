@@ -1,11 +1,17 @@
+"use client";
+
+import { useLanguage } from "@/lib/LanguageContext";
+
 export default function WhatsappButton() {
+  const { t } = useLanguage();
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       <a
         href="tel:05401550778"
         className="hidden md:flex rounded-full border border-yellow-500/30 bg-black/80 px-5 py-3 text-sm font-bold text-yellow-400 backdrop-blur-xl hover:bg-yellow-400 hover:text-black transition"
       >
-        Hemen Ara
+        {t.nav.callNow}
       </a>
 
       <a
@@ -16,7 +22,7 @@ export default function WhatsappButton() {
       >
         <span className="text-2xl">☎</span>
         <span className="hidden md:block font-black">
-          WhatsApp
+          {t.nav.whatsapp}
         </span>
       </a>
     </div>

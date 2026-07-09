@@ -1,28 +1,31 @@
+"use client";
+
+import { useLanguage } from "@/lib/LanguageContext";
+
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="py-32 px-6 bg-zinc-950">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
         <div data-aos="fade-right">
           <p className="text-yellow-400 uppercase tracking-[0.35em] text-xs">
-            İletişim
+            {t.contact.eyebrow}
           </p>
 
           <h2 className="mt-5 text-4xl md:text-6xl font-black leading-tight">
-            VIP Transfer İçin
-            <span className="block text-yellow-400">Bize Ulaşın</span>
+            {t.contact.title1}
+            <span className="block text-yellow-400">
+              {t.contact.title2}
+            </span>
           </h2>
 
           <p className="mt-7 text-white/60 text-lg leading-8">
-            İstanbul merkezli Türkiye geneli VIP transfer, havalimanı transferi
-            ve özel şoförlü ulaşım hizmetleri için bizimle iletişime geçin.
+            {t.contact.text}
           </p>
 
           <div className="mt-10 grid gap-4">
-            {[
-              ["Telefon", "0540 155 07 78"],
-              ["E-posta", "yildizvipluxury@gmail.com"],
-              ["Hizmet Bölgesi", "İstanbul • Türkiye Geneli"],
-            ].map(([label, value]) => (
+            {t.contact.info.map(([label, value]) => (
               <div
                 key={label}
                 className="rounded-2xl border border-yellow-500/20 bg-black p-5"

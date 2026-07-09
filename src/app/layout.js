@@ -1,5 +1,6 @@
 import "./globals.css";
 import AOSProvider from "@/components/AOSProvider";
+import { LanguageProvider } from "@/lib/LanguageContext";
 import { Montserrat, Playfair_Display } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -22,8 +23,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <body className={`${montserrat.variable} ${playfair.variable}`}>
-        <AOSProvider />
-        {children}
+        <LanguageProvider>
+          <AOSProvider />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
