@@ -5,13 +5,34 @@ import { useLanguage } from "@/lib/LanguageContext";
 export default function WhatsappButton() {
   const { t } = useLanguage();
 
-  const handleWhatsAppClick = () => {
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+  const handleWhatsAppClick = (event) => {
+    event.preventDefault();
+
+    const whatsappUrl = "https://wa.me/905401550778";
+
+    if (
+      typeof window !== "undefined" &&
+      typeof window.gtag === "function"
+    ) {
+      let opened = false;
+
+      const openWhatsApp = () => {
+        if (opened) return;
+        opened = true;
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      };
+
       window.gtag("event", "conversion", {
         send_to: "AW-18309176041/GIvJCMeJitIcEOm1v5pE",
         value: 1,
         currency: "TRY",
+        event_callback: openWhatsApp,
       });
+
+      // Google geri dönüş yapmazsa WhatsApp yine açılsın.
+      window.setTimeout(openWhatsApp, 800);
+    } else {
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     }
   };
 
