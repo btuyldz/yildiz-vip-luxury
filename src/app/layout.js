@@ -2,6 +2,7 @@ import "./globals.css";
 import AOSProvider from "@/components/AOSProvider";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import { Montserrat, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -27,6 +28,20 @@ export default function RootLayout({ children }) {
           <AOSProvider />
           {children}
         </LanguageProvider>
+        <Script
+    src="https://www.googletagmanager.com/gtag/js?id=AW-18309176041"
+    strategy="afterInteractive"
+  />
+
+  <Script id="google-ads-tag" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18309176041');
+    `}
+  </Script>
+
       </body>
     </html>
   );
