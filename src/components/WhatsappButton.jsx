@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/LanguageContext";
+import Script from "next/script";
 
 export default function WhatsappButton() {
   const { t } = useLanguage();
@@ -19,7 +20,20 @@ export default function WhatsappButton() {
         target="_blank"
         aria-label="WhatsApp ile iletişime geç"
         className="group flex items-center gap-3 rounded-full bg-green-500 px-5 py-4 text-black shadow-2xl transition hover:scale-105"
-      >
+      ><a
+  href="https://wa.me/905401550778"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp ile iletişime geç"
+  onClick={() => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18309176041/GIvJCMeJitIcEOm1v5pE",
+      });
+    }
+  }}
+  className="group flex items-center gap-3 rounded-full bg-green-500 px-5 py-4 text-black shadow-2xl transition hover:scale-105"
+>
         <span className="text-2xl">☎</span>
         <span className="hidden md:block font-black">
           {t.nav.whatsapp}
