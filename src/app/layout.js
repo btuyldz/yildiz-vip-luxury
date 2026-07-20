@@ -28,20 +28,21 @@ export default function RootLayout({ children }) {
           <AOSProvider />
           {children}
         </LanguageProvider>
+
         <Script
-    src="https://www.googletagmanager.com/gtag/js?id=AW-18309176041"
-    strategy="afterInteractive"
-  />
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18309176041"
+          strategy="afterInteractive"
+        />
 
-  <Script id="google-ads-tag" strategy="afterInteractive">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18309176041');
-    `}
-  </Script>
-
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'AW-18309176041');
+          `}
+        </Script>
       </body>
     </html>
   );
