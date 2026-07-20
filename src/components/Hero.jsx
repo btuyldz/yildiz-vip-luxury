@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/LanguageContext";
+import { reportWhatsappConversion } from "@/lib/googleAdsConversions";
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -36,11 +37,13 @@ export default function Hero() {
             {t.hero.reservation}
           </a>
 
-          <a
-            href="https://wa.me/905401550778"
-            target="_blank"
-            className="btn-secondary"
-          >
+         <a
+  href="https://wa.me/905401550778"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={reportWhatsappConversion}
+  className="btn-secondary"
+>
             {t.hero.whatsapp}
           </a>
         </div>
