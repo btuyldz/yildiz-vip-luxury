@@ -9,6 +9,34 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { lang, setLang, t } = useLanguage();
 
+  const reportPhoneConversion = () => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18309176041/VVpGCOv79NEcEOm1v5pE",
+        value: 1.0,
+        currency: "TRY",
+      });
+
+      console.log("Navbar telefon dönüşümü Google Ads'e gönderildi.");
+    } else {
+      console.warn("Google Ads etiketi henüz yüklenmedi.");
+    }
+  };
+
+  const reportWhatsappConversion = () => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18309176041/GIvJCMeJitIcEOm1v5pE",
+        value: 1.0,
+        currency: "TRY",
+      });
+
+      console.log("Navbar WhatsApp dönüşümü Google Ads'e gönderildi.");
+    } else {
+      console.warn("Google Ads etiketi henüz yüklenmedi.");
+    }
+  };
+
   const links = [
     [t.nav.services, "#services"],
     [t.nav.fleet, "#fleet"],
@@ -19,6 +47,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
+
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
@@ -61,7 +90,11 @@ export default function Navbar() {
 
         <nav className="hidden lg:flex gap-10 text-sm uppercase tracking-[0.25em] text-white/70">
           {links.map(([label, href]) => (
-            <a key={label} href={href} className="hover:text-yellow-400 transition">
+            <a
+              key={label}
+              href={href}
+              className="hover:text-yellow-400 transition"
+            >
               {label}
             </a>
           ))}
@@ -76,7 +109,8 @@ export default function Navbar() {
           </button>
 
           <a
-            href="tel:05401550778"
+            href="tel:+905401550778"
+            onClick={reportPhoneConversion}
             className="rounded-full border border-yellow-500/30 px-6 py-3 font-bold text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
           >
             {t.nav.call}
@@ -85,6 +119,8 @@ export default function Navbar() {
           <a
             href="https://wa.me/905401550778"
             target="_blank"
+            rel="noopener noreferrer"
+            onClick={reportWhatsappConversion}
             className="rounded-full bg-yellow-400 px-6 py-3 font-black text-black hover:bg-yellow-300 transition"
           >
             {t.nav.whatsapp}
@@ -124,7 +160,11 @@ export default function Navbar() {
             </button>
 
             <a
-              href="tel:05401550778"
+              href="tel:+905401550778"
+              onClick={() => {
+                reportPhoneConversion();
+                setOpen(false);
+              }}
               className="rounded-full border border-yellow-500/30 px-6 py-4 text-center text-yellow-400"
             >
               {t.nav.callNow}
@@ -133,6 +173,11 @@ export default function Navbar() {
             <a
               href="https://wa.me/905401550778"
               target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                reportWhatsappConversion();
+                setOpen(false);
+              }}
               className="rounded-full bg-yellow-400 px-6 py-4 text-center text-black"
             >
               {t.nav.whatsapp}
