@@ -14,8 +14,6 @@ export default function WhatsappButton() {
       });
 
       console.log("Telefon dönüşümü Google Ads'e gönderildi.");
-    } else {
-      console.warn("Google Ads etiketi henüz yüklenmedi.");
     }
   };
 
@@ -28,8 +26,6 @@ export default function WhatsappButton() {
       });
 
       console.log("WhatsApp dönüşümü Google Ads'e gönderildi.");
-    } else {
-      console.warn("Google Ads etiketi henüz yüklenmedi.");
     }
   };
 
@@ -39,6 +35,7 @@ export default function WhatsappButton() {
         href="tel:+905401550778"
         onClick={reportPhoneConversion}
         aria-label="Telefonla ara"
+        className="flex min-w-[140px] items-center justify-center rounded-full border border-yellow-500/70 bg-black/90 px-6 py-3 text-sm font-bold text-yellow-400 shadow-lg backdrop-blur-md transition hover:bg-yellow-400 hover:text-black"
       >
         Telefon
       </a>
@@ -49,6 +46,7 @@ export default function WhatsappButton() {
         rel="noopener noreferrer"
         onClick={reportWhatsappConversion}
         aria-label="WhatsApp üzerinden iletişime geç"
+        className="flex min-w-[140px] items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-bold text-black shadow-lg transition hover:bg-yellow-300"
       >
         WhatsApp
       </a>
